@@ -1,0 +1,1 @@
+Two-norm of difference between host and device = 0.000000e+00
