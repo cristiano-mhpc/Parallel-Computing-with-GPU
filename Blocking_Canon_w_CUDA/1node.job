@@ -1,0 +1,41 @@
+#!/bin/bash 
+
+#SBATCH --job-name=1node 
+#SBATCH --nodes=1 # Number of nodes
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=boost_usr_prod
+#SBATCH --time=00:50:00
+#SBATCH --mem=250GB
+#SBATCH --gpus-per-node=4
+#SBATCH --out=1node.out
+#SBATCH --err=1node.err
+##SBATCH --qos=boost_qos_dbg
+#SBATCH --account=ict24_mhpc
+
+module load openmpi/4.1.6--nvhpc--24.3
+
+module load cuda/12.3
+
+mpirun -np 4 ./cart.x 1000
+
+mpirun -np 4 ./cart.x 2000
+ 
+mpirun -np 4 ./cart.x 5000
+mpirun -np 4 ./cart.x 10000
+mpirun -np 4 ./cart.x 15000
+mpirun -np 4 ./cart.x 20000
+mpirun -np 4 ./cart.x 25000
+mpirun -np 4 ./cart.x 30000
+mpirun -np 4 ./cart.x 35000
+mpirun -np 4 ./cart.x 40000
+mpirun -np 4 ./cart.x 45000
+mpirun -np 4 ./cart.x 50000
+mpirun -np 4 ./cart.x 55000
+mpirun -np 4 ./cart.x 60000
+mpirun -np 4 ./cart.x 65000
+
+
+
+
+
