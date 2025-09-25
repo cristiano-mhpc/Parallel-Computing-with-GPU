@@ -1,0 +1,10 @@
+"Parallel_CSimple_timer.hpp", line 189: warning: missing return statement at end of non-void function "CSimple_timer::print_timing_results" [implicit_return_from_non_void_function]
+    }
+    ^
+
+Remark: individual warnings can be suppressed with "--diag_suppress <warning-name>"
+
+matMul(int, int, int, double*, double*, double*):
+     37, Generating copyin(A[:k*m]) [if not already present]
+         Generating copy(C[:m*n]) [if not already present]
+         Generating copyin(B[:k*n]) [if not already present]

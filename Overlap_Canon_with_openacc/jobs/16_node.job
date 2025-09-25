@@ -1,0 +1,22 @@
+#!/bin/bash 
+
+#SBATCH --job-name=1node 
+#SBATCH --nodes=16 # Number of nodes
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=8
+#SBATCH --partition=boost_usr_prod
+#SBATCH --time=00:010:00
+#SBATCH --gpus-per-node=4
+#SBATCH --out=../job_out/16node_right.out
+#SBATCH --err=../job_error/16node.err
+
+##SBATCH --qos=boost_qos_dbg #uncomment for debugging
+#SBATCH --account=ict24_mhpc
+
+module load openmpi/4.1.6--nvhpc--24.3
+
+module load cuda/12.1
+
+mpirun -np 64 ../cart.x 8192
+
+

@@ -1,0 +1,23 @@
+#!/bin/bash 
+
+#SBATCH --job-name=1node 
+#SBATCH --nodes=1 # Number of nodes
+#SBATCH --ntasks-per-node=9
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=boost_usr_prod
+#SBATCH --time=00:010:00
+#SBATCH --gpus-per-node=1
+#SBATCH --out=compile_out
+#SBATCH --err=compile.err
+#SBATCH --time=30
+#SBATCH --qos=boost_qos_dbg
+#SBATCH --account=ict24_mhpc
+
+module load openmpi/4.1.6--nvhpc--24.3
+
+module load cuda/12.1
+
+mpic++ -Minfo -acc -lcublas -DCUDA -march=native main.cpp -o cart.x
+
+
+
