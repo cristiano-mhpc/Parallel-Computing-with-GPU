@@ -1,8 +1,7 @@
 #include <mpi.h>
 #include <iostream>
 #include <vector>
-#include <string>
-//#include "Parallel_CSimple_timer.hpp"
+#include <string> //#include "Parallel_CSimple_timer.hpp"
 #include <cmath>
 #include <cuda_runtime.h>
 #include <cublas_v2.h>
@@ -54,7 +53,7 @@ void matMul(int m, int n, int k, double* A, double* B, double* C){
 
 int main(int argc, char** argv){
 	/**
-	 * We implement the canonical algorithm of block matrix multiplication using 
+	 * We implement the Cannon's algorithm of block matrix multiplication using 
 	 * A 2-D distribution of data to the processes. This is accomplised by 
 	 * creating a 2d cartesian layout for mapping 2d blocks of data to the processes. 
 	 */
