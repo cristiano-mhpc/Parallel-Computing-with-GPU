@@ -87,7 +87,7 @@ int main(int argc, char** argv){
 	//the square root of communicator size
 	int sqrt_comm_size = static_cast<int>(std::sqrt(comm_sz));
 
-	//check if the dimension is a multiple of the squareroot of comm_size 
+	//check if the dimension is a multiple of the square root of comm_size 
 	if (N%sqrt_comm_size != 0){
 		std::cout << "Usage: The dimension of the square matrix must be a multiple of the sqrt(comm_size)" << std::endl;
 		MPI_Abort(MPI_COMM_WORLD, 1);
@@ -144,11 +144,11 @@ int main(int argc, char** argv){
 	//double* d_temp_A_loc = (double *)acc_deviceptr(temp_A_loc);
  
     
-    //todo change to copyin all vactors in later in the timing 
+    // copyin all vactors in later in the timing 
     #pragma acc data copyin(d_A_loc[:N_loc*N_loc], d_B_loc[:N_loc*N_loc], d_C_loc[:N_loc*N_loc], d_temp_A_loc[:N_loc*N_loc], d_temp_B_loc[:N_loc*N_loc], d_C_loc[:N_loc*N_loc])
     {
-	//{
-      //CSimple_timer t1("Total", my_rank, comm_sz, MPI_COMM_WORLD);
+	  {
+      CSimple_timer t1("Total", my_rank, comm_sz, MPI_COMM_WORLD);
 	  MPI_Request request_send, request_recv, request_send2, request_recv2;  
      
 	  MPI_Cart_shift(cart_comm, 1, coords[0], &left, &right);
@@ -194,8 +194,8 @@ int main(int argc, char** argv){
 		    MPI_Irecv(d_temp_B_loc, N_loc*N_loc, MPI_DOUBLE, right, 0, MPI_COMM_WORLD, &request_recv2);
 			}
 
-            //{
-	          //CSimple_timer t2("comp", my_rank, comm_sz, MPI_COMM_WORLD);		
+            {
+	          CSimple_timer t2("comp", my_rank, comm_sz, MPI_COMM_WORLD);		
               //matMul(N_loc, N_loc, N_loc, A_loc.data(), B_loc.data(),C_loc.data());
 			  cublasDgemm(handle, 
                          CUBLAS_OP_T,CUBLAS_OP_T, 
@@ -205,7 +205,7 @@ int main(int argc, char** argv){
 			             d_A_loc, N_loc,                //B and its leading dimension
 			             &beta,                 
 			             d_C_loc, N_loc);               //C and its leading dimension
-	        //}
+	        }
 
 		    MPI_Wait(&request_recv, MPI_STATUS_IGNORE);
 		    MPI_Wait(&request_send, MPI_STATUS_IGNORE);
@@ -227,8 +227,8 @@ int main(int argc, char** argv){
 
 	  }
             
-	  //{
-		    //CSimple_timer t2("comp", my_rank, comm_sz, MPI_COMM_WORLD);    
+	  {
+		    CSimple_timer t2("comp", my_rank, comm_sz, MPI_COMM_WORLD);    
             //matMul(N_loc, N_loc, N_loc, A_loc.data(), B_loc.data(),C_loc.data());
 			cublasDgemm(handle, 
               CUBLAS_OP_T,CUBLAS_OP_T, 
@@ -238,10 +238,10 @@ int main(int argc, char** argv){
 			  d_A_loc, N_loc,                        //B and its leading dimension
 			  &beta,                 
 			  d_C_loc, N_loc);                       //C and its leading dimension
-	  //}
+	  }
 
 
-	  //}//CSimple_timer_total
+	  }//CSimple_timer_total
 
 
 	}//end data_region
@@ -254,8 +254,7 @@ int main(int argc, char** argv){
 		std::cout << std::endl;
 	}
 
-	//long long int comp_time = CSimple_timer::print_timing_results(my_rank, comm_sz, MPI_COMM_WORLD);	
-    /*    
+	long long int comp_time = CSimple_timer::print_timing_results(my_rank, comm_sz, MPI_COMM_WORLD);	
 	if (!my_rank){
 
 	  long long int comp_time = CSimple_timer::print_timing_results(my_rank, comm_sz, MPI_COMM_WORLD);
@@ -269,7 +268,7 @@ int main(int argc, char** argv){
 	  std::cout << "gflops: " << gflops << std::endl;
 
     }
-    */
+
     cublasDestroy(handle);
 
     MPI_Comm_free(&cart_comm);
