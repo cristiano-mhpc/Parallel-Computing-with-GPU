@@ -33,19 +33,27 @@ set grid back ls 12
 set grid xtics ytics mxtics
 
 # controlling the legend (key): 
-set nokey
-set key below vertical maxrows 1 samplen 1 spacing 1.5 width -0.5
+unset key
+set key top right spacing 1.2 samplen 1.5 nobox
 
 # title and labels
-set title "Executions times Jacobi Blocking With OpenACC  (N=12K, iter=1000)"
-set xlabel "Nodes(GPUs/Node = Ntask/Node = 4)"
-set ylabel "time in [us]"
+set title "Performance for the Jacobi solver With OpenACC Blocking calls  (N=12K, iter=1000)"
+set xlabel "Number of Nodes (GPUs/Node = Ntask/Node = 4)"
+set ylabel "Wall clock time(us)"
 
 # Histogram style
 set style data histogram
 set style histogram rowstacked
 set boxwidth 0.5 relative
 set style fill solid 1.0 border -1
+
+# === Caption (hardware info) ===
+set label 1 \
+"Leonardo Booster: 1 nodes consists of a single-socket 32-core Intel Xeon Platinum 8358 CPU (2.60 GHz), 512 GB DDR4\nRAM,4× NVIDIA A100 GPUs (64 GB HBM2e, NVLink 3.0, 200 GB/s), network: 2× dual-port HDR100 per node (400 Gbps/node)." \
+    at graph 0.4, graph -0.20 center font ',7.5'
+
+# Add bottom margin for caption
+set bmargin 6
 
 plot dat_file \
         u ($3/1):xtic(1)  t'comp' ,\
