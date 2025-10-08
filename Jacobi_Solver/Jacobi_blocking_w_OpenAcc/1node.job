@@ -1,0 +1,23 @@
+#!/bin/bash 
+
+#SBATCH --job-name=1node_jacobi 
+#SBATCH --nodes=1 # Number of nodes
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=4GB
+#SBATCH --partition=boost_usr_prod
+#SBATCH --time=00:05:00 
+#SBATCH --gpus-per-node=1   
+#SBATCH --out=1node.out
+#SBATCH --err=1node.err
+#SBATCH --account=ict24_mhpc
+
+echo "Running 1_node and 32 mpi processes."
+
+module load openmpi/4.1.6--nvhpc--24.3
+
+module load nvhpc/24.3
+
+mpirun -np 4 ./output 
+
+
