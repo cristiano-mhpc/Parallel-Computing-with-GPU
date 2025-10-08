@@ -1,0 +1,142 @@
+# ============================================================
+# 🧠 General system + editor files
+# ============================================================
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*~
+.DS_Store
+Thumbs.db
+
+# ============================================================
+# 🧰 Build directories & temporary objects
+# ============================================================
+build/
+build_*/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+CMakeOutput.log
+CMakeError.log
+compile_commands.json
+*.o
+*.obj
+*.mod
+*.cmd
+*.a
+*.so
+*.dll
+*.dylib
+*.lib
+*.exe
+*.out
+*.x
+
+# ============================================================
+# 🧮 CUDA / GPU-related build outputs
+# ============================================================
+*.cu.d
+*.ptx
+*.cubin
+*.fatbin
+*.nvvp
+*.nsys-rep
+*.qdrep
+*.sqlite
+*.prof
+*.nvprof
+profile.nvvp
+cuda_profile*.log
+
+# ============================================================
+# 📊 Profiling / Performance outputs
+# ============================================================
+gmon.out
+gmon_sum
+gprof_*.txt
+perf.data*
+rank*.perf
+*.nvvp
+*.nsys*
+*.qdrep
+*.sqlite
+reports_*/
+REPORTS_*/
+*.json
+
+# ============================================================
+# 🧾 HPC job-related outputs
+# ============================================================
+slurm-*.out
+slurm-*.err
+nohup.out
+*.jobid
+*.log
+*.e*
+*.o*
+*.lst
+*.trace
+*.timing
+output_*/
+outputs/
+logs/
+tmp/
+temp/
+
+# ============================================================
+# 📦 Data, checkpoints, and large binary files
+# ============================================================
+*.bin
+*.dat
+*.nc
+*.nc4
+*.cdf
+*.h5
+*.npy
+*.npz
+*.csv
+*.pkl
+*.sav
+*.mat
+*.tar
+*.tar.gz
+*.zip
+
+# ============================================================
+# 📈 Generated figures / plots
+# ============================================================
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+*.eps
+*.gif
+
+# ============================================================
+# ⚙️ IDE / Editor configuration
+# ============================================================
+.vscode/
+.vscode/*
+.idea/
+.idea/*
+.clangd/
+.clangd/*
+.ccls-cache/
+*.code-workspace
+
+# ============================================================
+# 🧪 Python (for analysis scripts)
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.venv/
+venv
+
