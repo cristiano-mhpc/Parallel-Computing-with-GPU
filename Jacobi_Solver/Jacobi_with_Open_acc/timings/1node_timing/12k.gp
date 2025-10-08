@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot
 
-dat_file="./12k_a.txt"
-dat_plot="fig.png"
+dat_file="./12k.txt"
+dat_plot="fig2.png"
 
 reset
 
@@ -37,8 +37,8 @@ unset key
 set key top right spacing 1.2 samplen 1.5 nobox
 
 # title and labels
-set title "Performance for the Jacobi solver With OpenACC Blocking calls  (N=12K, iter=1000)"
-set xlabel "Number of Nodes (GPUs/Node = Ntask/Node = 4)"
+set title "Performance for the Jacobi solver With OpenACC \n on a single compute node (N=12K, iter=1000)"
+set xlabel "Number of GPUs"
 set ylabel "Wall clock time(us)"
 
 # Histogram style
