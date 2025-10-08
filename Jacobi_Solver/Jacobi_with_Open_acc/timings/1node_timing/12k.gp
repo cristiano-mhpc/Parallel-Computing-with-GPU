@@ -39,7 +39,7 @@ set key top right spacing 1.2 samplen 1.5 nobox
 # title and labels
 set title "Performance for the Jacobi solver with OpenACC \n on a single compute node (N=12K, iter=1000)"
 set xlabel "Number of GPUs"
-set ylabel "Wall clock time(us)"
+set ylabel "Wallclock time(us)"
 
 # Histogram style
 set style data histogram
