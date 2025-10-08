@@ -1,7 +1,7 @@
 #!/usr/bin/gnuplot
 
-dat_file="./12k.txt"
-dat_plot="fig2.png"
+dat_file="./12k_a.txt"
+dat_plot="fig.png"
 
 reset
 
