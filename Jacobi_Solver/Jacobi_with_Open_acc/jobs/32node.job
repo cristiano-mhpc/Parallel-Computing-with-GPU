@@ -1,0 +1,19 @@
+#!/bin/bash 
+
+#SBATCH --job-name=32node_jacobi 
+#SBATCH --nodes=32 # Number of nodes
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=8
+#SBATCH --partition=boost_usr_prod
+#SBATCH --gpus-per-node=4
+#SBATCH --time=00:05:00 
+#SBATCH --out=../job_out/32_node.out
+#SBATCH --err=../job_error/32_node.err
+#SBATCH --account=ict24_mhpc
+
+module load openmpi/4.1.6--nvhpc--24.3
+
+srun ../ex_rel.x 12000 
+
+
+
