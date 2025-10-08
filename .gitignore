@@ -140,3 +140,10 @@ __pycache__/
 .venv/
 venv
 
+
+
+# ignore some directories 
+OpenAcc_general/
+Jacobi_blocking_w_OpenAcc/ 
+blocking_Jacobi_w_openacc/
+
