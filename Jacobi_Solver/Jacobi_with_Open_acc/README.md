@@ -155,8 +155,8 @@ Performance was measured on both CPU and GPU versions across single and multiple
 
 | Configuration | Description | Plot |
 |----------------|-------------|------|
-| Single-node    | GPU vs CPU performance comparison | ![1node](timings/1node_timing/fig2.png) |
-| Multi-node     | Strong scaling with increasing nodes | ![multi](timings/multiple_node_timing/fig2.png) |
+| Single-node    | GPU vs CPU performance comparison | [1node](timings/1node_timing/fig2.png) |
+| Multi-node     | Strong scaling with increasing nodes | [multi](timings/multiple_node_timing/fig2.png) |
 
 Plots were generated using the provided Gnuplot scripts (`*.gp`).
 
